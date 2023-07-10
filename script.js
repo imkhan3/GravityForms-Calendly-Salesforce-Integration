@@ -93,13 +93,13 @@ function AppendCalendlyAssets() {
     document.body.appendChild(scriptTag);
 }
 
-function attachCalendly(gform, calendlyForm, company_size_input = "", EE_s=20, pardotHandler, pardotQueryString) {
+function attachCalendly(gform, calendlyForm, selected_input = "", EE_s=20, pardotHandler, pardotQueryString) {
     if(gform == null || gform == undefined || gform == "") {
         return;
     }
-    if (company_size_input == null || company_size_input == "" || company_size_input == undefined) {
-        company_size_input = document.evaluate(
-            "//label[contains(., 'Company Size')]/following-sibling::div/input",
+    if (selected_input == null || selected_input == "" || selected_input == undefined) {
+        selected_input = document.evaluate(
+            "//label[contains(., 'Some-input-placeholder')]/following-sibling::div/input",
             gform,
             null,
             XPathResult.FIRST_ORDERED_NODE_TYPE,
@@ -110,7 +110,7 @@ function attachCalendly(gform, calendlyForm, company_size_input = "", EE_s=20, p
 
     var submitButton = gform.querySelector(".gform_button[type='submit']");
     submitButton.addEventListener("click", function (e) {
-        if (company_size_input.value >= EE_s && jQuery($jvcfpValidation).valid()) {
+        if (jQuery($jvcfpValidation).valid()) {
             e.preventDefault();
             e.stopPropagation();
             if ( document.querySelector("#pardot-submit") == null ) {
